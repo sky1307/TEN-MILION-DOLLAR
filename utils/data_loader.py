@@ -1,28 +1,43 @@
-import sys 
+#  nhan vao input la mot file
+# xu ly ssa
+# tra ve dang du lieu mong muon
+import sys
 sys.path.append('..')
 
 import numpy as np
 import pandas as pd
-from utils.ssa import SSA 
-# from utils.reprocess_daily import extract_data, ed_extract_data, roll_data
+from utils.ssa import SSA
+from utils.reprocess_daily import extract_data, ed_extract_data, roll_data
+
 
 def get_input_data(input_file, default_n, sigma_lst):
-    data = pd.read_csv(input_file, header=0)
-    H = data['High'].to_list()
-    L = data['Low'].to_list()
+    dat = pd.read_csv(input_file, header=0)
+    Q = dat['Q'].to_list()
+    H = dat['H'].to_list()
 
+    # print(Q[:5])
+    # print(H[:5])
     lst_H_ssa = SSA(H, default_n)
-    lst_L_ssa = SSA(L, default_n)
+    lst_Q_ssa = SSA(Q, default_n)
 
     H_ssa = lst_H_ssa.reconstruct(sigma_lst)
-    L_ssa = lst_L_ssa.reconstruct(sigma_lst)
+    Q_ssa = lst_Q_ssa.reconstruct(sigma_lst)
+    # print(Q_ssa[:5])
+    # print(H_ssa[:5])
+    # dat['Q_ssa'] = Q_ssa
+    # dat['H_ssa'] = H_ssa
 
-    data['H_ssa'] = H_ssa
-    data['L_ssa'] = L_ssa
+    dat['Q_ssa'] = Q_ssa
+    # print(dat['Q'][:5])
+    dat['H_ssa'] = H_ssa
+    # print(dat['H'][:5])
 
-    result = data[['High', 'Low', 'H_ssa', 'L_ssa']]
+    # print(dat.head())
+    result = dat[['Q', 'H', 'Q_ssa', 'H_ssa']]
     return result
+
+
 if __name__ == "__main__":
-    res = get_input_data('../data/data1000d_BTCUSDT.csv', 20, [1, 2, 3])
+    res = get_input_data('../data/SonTay.csv', 20, [1, 2, 3])
     res.to_csv('../data/modified_data.csv', index=False)
     print(res.head())

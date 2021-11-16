@@ -4,9 +4,9 @@ import csv
 
 
 class Binance():
-    with open("config/binance.yaml", 'r') as f:
+    with open("./settings/binance/setting.yaml", 'r') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
-    apikey = config['apiKey']
+    apiKey = config['apiKey']
     apiSecret = config['apiSecret']
     symbol = config['symbol']
     interval = config['interval']
@@ -22,7 +22,7 @@ class Binance():
         dir_file_data = Binance.data_dir + Binance.data_file
         with open(dir_file_data, 'w', newline='') as f:
             writer = csv.writer(f, delimiter=',')
-            writer.writerow(['Open_time', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close_time', 'Qoute_asset_volume',
+            writer.writerow(['date', 'Open', 'Q', 'H', 'Close', 'Volume', 'Close_time', 'Qoute_asset_volume',
                              'Number_of_trades', 'Taker_buy_base_asset_volume', 'Taker_buy_quote_asset_volume',
                              'Can_be_ignored'])
             for d in data:

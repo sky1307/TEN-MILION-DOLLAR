@@ -1,5 +1,6 @@
+# Load the usual suspects:
 import numpy as np
-from  numpy import  pi
+from numpy import pi
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -148,16 +149,25 @@ class SSA(object):
         return self.Sigma
 
 if __name__=="__main__":
-    data_file = "../data/data1000d_BTCUSDT.csv"
+    data_file = "../data/SonTay.csv"
     # data_out ="../RawData/output.txt"
     df = pd.read_csv(data_file)
 
-    H = df['High'].to_list()
-    L = df['Low'].to_list()
+    Q = df['Q'].to_list()
+    H = df['H'].to_list()
 
     H_ssa_L20 = SSA(H, 20)
-    L_ssa_L20 = SSA(L, 20)
+    Q_ssa_L20 = SSA(Q, 20)
 
     lst_sigma = H_ssa_L20.get_lst_sigma()
 
     print(lst_sigma)
+    # H_ssa = H_ssa_L20.reconstruct([0,1,2,3])
+    # df['water_level_modified'] = H_ssa
+
+    # Q_ssa = Q_ssa_L20.reconstruct([0,1,2,3,4,5,6,7,8,9,10,11,12])
+    # df['discharge_modified'] = Q_ssa
+
+    # df_ = df[['time','discharge', 'water_level', 'discharge_modified', 'water_level_modified']]
+    # df_.to_csv('../RawData/Kontum_modified.csv', index=False)
+

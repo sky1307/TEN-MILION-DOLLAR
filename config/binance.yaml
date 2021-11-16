@@ -1,7 +1,0 @@
-apiKey : 'M1dOjD5eP7O6RmlmPR3NQvGC2a6m5G9qrpoDkVvhoj4SElRrq7TqZcrcjRdorm03'
-apiSecret : 'Xp0VLnY7U2PdKqrshHVZFeQmx1lP80hs4WWdMB6dZw9GkcI4dE1y7JhkgTIdKsVd'
-symbol : 'BTCUSDT'
-interval : '5m'
-limit : 1000
-data_file : 'data.csv'
-data_dir : 'data/data.csv'

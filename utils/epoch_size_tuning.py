@@ -1,6 +1,6 @@
 '''
     Input: so luong model, size epoch min, buoc nhay epoch = 50
-    Output: list epoch tuong ung voi cac model con
+    Output: list epoch tuong ung voi cac model con 
 '''
 
 def get_epoch_size_list(num_model, epoch_min, epoch_step=50):
